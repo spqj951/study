@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script type="text/babel">
+    function GuGudan() {
+      const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+      const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+      const [value, setValue] = React.useState(0);
+      const [result, setResult] = React.useState(-1);
+      const onChange = (e) => {
+        setValue(e.target.value);
+      };
+      const onSubmit = (event) => {
+        event.preventDefault();
+        setResult(first * second);
+      };
+      const input = document.querySelector("input");
+      return (
+        <div>
+          <div>
+            {first} 곱하기{second} 는?
+          </div>
+          <form>
+            <input type="number" onChange={onChange} />
+            <button onClick={onSubmit}>입력</button>
+          </form>
+          <div>{result}</div>
+          <div>{value === result ? "정답!" : "땡!"}</div>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"));
+    root.render(<GuGudan />);
+  </script>
+</html>

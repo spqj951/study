@@ -1,0 +1,17 @@
+{
+  "name": "react-nodebird",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next"
+  },
+  "author": "kyujin",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^9.5.5",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  }
+}
