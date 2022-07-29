@@ -19,28 +19,41 @@
     function GuGudan() {
       const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
       const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
-      const [value, setValue] = React.useState(0);
-      const [result, setResult] = React.useState(-1);
+      const [value, setValue] = React.useState("");
+      const [result, setResult] = React.useState();
       const onChange = (e) => {
         setValue(e.target.value);
       };
       const onSubmit = (event) => {
         event.preventDefault();
-        setResult(first * second);
+        if (parseInt(value) === first * second) {
+          setResult(`정답 ${value}`),
+            setFirst(Math.ceil(Math.random() * 9)),
+            setSecond(Math.ceil(Math.random() * 9)),
+            setValue("");
+          onRef.current.focus();
+        } else {
+          setResult("땡"), setValue();
+        }
       };
-      const input = document.querySelector("input");
+      const onRef = React.useRef(null);
+
       return (
-        <div>
+        <React.Fragment>
           <div>
             {first} 곱하기{second} 는?
           </div>
-          <form>
-            <input type="number" onChange={onChange} />
-            <button onClick={onSubmit}>입력</button>
+          <form onSubmit={onSubmit}>
+            <input
+              ref={onRef}
+              type="number"
+              value={value}
+              onChange={onChange}
+            />
+            <button>입력</button>
           </form>
           <div>{result}</div>
-          <div>{value === result ? "정답!" : "땡!"}</div>
-        </div>
+        </React.Fragment>
       );
     }
     const root = ReactDOM.createRoot(document.querySelector("#root"));
