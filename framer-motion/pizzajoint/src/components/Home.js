@@ -2,15 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion"; //1.import
 
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+    textShadow: "0px 0px 8px rgb(255, 255, 255)",
+    boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+    transition: {
+      duration: 0.5,
+      yoyo: Infinity,
+    },
+  },
+};
 const Home = () => {
   return (
     <motion.div //원하는 곳에 motion붙이기,animate에 객체 형태로 css 넣기
-      animate={{}}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5, duration: 1.5 }}
       className="home container"
     >
       <motion.h2 animate={{}}>Welcome to Pizza Joint</motion.h2>
       <Link to="/base">
-        <motion.button animate={{}}>Create Your Pizza</motion.button>
+        <motion.button variants={buttonVariants} whileHover="hover">
+          Create Your Pizza
+        </motion.button>
       </Link>
     </motion.div>
   );
